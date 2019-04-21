@@ -10,9 +10,11 @@
    }
    private static void pushDown(int[] data, int size, int index){
      if(2*index+1<size&&data[2*index+1]>data[index]){
+       swap(data, index, 2*index+1);
        pushDown(data,size,2*index+1);
      }
      else if(2*index+2<size&&data[2*index+2]>data[index]){
+       swap(data, index, 2*index+2);
        pushDown(data,size,2*index+2);
      }
    }
