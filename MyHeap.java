@@ -18,8 +18,12 @@
        pushDown(data,size,2*index+2);
      }
    }
+   // push the element at index i up into the correct position. This will swap it with the parent node until the parent node is larger or the root is reached. [ should be O(logn) ]
+    //recondition: index is between 0 and data.length-1 inclusive.
    private static void pushUp(int[] data, int index){
-
+     if(index!=0&&(index-1)/2<index){
+       swap(data,index,index-1)/2);
+     }
    }
    public static void heapify(int[]){
 
