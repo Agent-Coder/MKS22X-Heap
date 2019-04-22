@@ -27,17 +27,16 @@ import java.util.Arrays;
      }
    }
    public static void heapify(int[] data){
-     for(int i=data.length-1;i>=0;i--){
-       swap(data,i,0);
-       pushDown(data, data.length, 0);
-     }
+     for(int i=0;i<data.length;i++){
+       pushDown(data,data.length,i);
    }
-   /*public static void heapsort(int[] data){
+ }
+   public static void heapsort(int[] data){
      //need to finish fitrst
-   }*/
+   }
    public static void main(String[] args) {
-     int[] x={3,10,8,5,2,4};
-     pushDown(x,3,0);
+     int[] x={2,10,3,4,8,5};
+     heapify(x);
      System.out.println(Arrays.toString(x));
    }
  }
