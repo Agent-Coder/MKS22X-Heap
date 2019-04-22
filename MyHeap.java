@@ -22,27 +22,31 @@ import java.util.Arrays;
    // push the element at index i up into the correct position. This will swap it with the parent node until the parent node is larger or the root is reached. [ should be O(logn) ]
     //recondition: index is between 0 and data.length-1 inclusive.
    private static void pushUp(int[] data, int index){
-     if(index!=0&&(index-1)/2<index){
+     if(data[(index-1)/2]<data[index]){
        swap(data,index,(index-1)/2);
+       System.out.println("swapped"+data[index]+"with"+data[(index-1)/2] );
+       System.out.println(Arrays.toString(data));
+       pushUp(data,(index-1)/2);
      }
    }
    public static void heapify(int[] data){
-     for(int i=0;i<data.length;i++){
-       pushDown(data,data.length,i);
+     for(int i=1;i<data.length;i++){
+       System.out.println(Arrays.toString(data));
+       pushUp(data,i);
    }
  }
    public static void heapsort(int[] data){
      heapify(data);
      int size=data.length;
      for(int i=0;i<size;i++){
-       System.out.println(Arrays.toString(data));
+       //System.out.println(Arrays.toString(data));
        pushDown(data,size-1,0);
        swap(data,0,size-1);
        size--;
      }
    }
    public static void main(String[] args) {
-     int[] x={2,10,3,4,8,5};
+     int[] x={1,1,33,42,83,51};
      heapsort(x);
      System.out.println(Arrays.toString(x));
    }
