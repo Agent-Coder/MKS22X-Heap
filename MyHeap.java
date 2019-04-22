@@ -10,11 +10,11 @@ import java.util.Arrays;
      data[index2]=temp;
    }
    private static void pushDown(int[] data, int size, int index){
-     if(2*index+1<data.length&&data[2*index+1]>data[index]){
+     if(2*index+1<size&&data[2*index+1]>data[index]){
        swap(data, index, 2*index+1);
        pushDown(data,size,2*index+1);
      }
-     else if(2*index+2<data.length&&data[2*index+2]>data[index]){
+     else if(2*index+2<size&&data[2*index+2]>data[index]){
        swap(data, index, 2*index+2);
        pushDown(data,size,2*index+2);
      }
@@ -32,11 +32,18 @@ import java.util.Arrays;
    }
  }
    public static void heapsort(int[] data){
-     //need to finish fitrst
+     heapify(data);
+     int size=data.length;
+     for(int i=0;i<size;i++){
+       System.out.println(Arrays.toString(data));
+       pushDown(data,size-1,0);
+       swap(data,0,size-1);
+       size--;
+     }
    }
    public static void main(String[] args) {
      int[] x={2,10,3,4,8,5};
-     heapify(x);
+     heapsort(x);
      System.out.println(Arrays.toString(x));
    }
  }
