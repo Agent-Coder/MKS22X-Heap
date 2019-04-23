@@ -5,17 +5,35 @@ import java.util.Arrays;
     //- precondition: index is between 0 and size-1 inclusive
     // - precondition: size is between 0 and data.length-1 inclusive.
    private static void swap(int[] data, int index1, int index2){
+     //System.out.println(Arrays.toString(data));
+     //System.out.println("swapping "+data[index1]+" and "+ data[index2]);
+
      int temp=data[index1];
      data[index1]=data[index2];
      data[index2]=temp;
    }
    private static void pushDown(int[] data, int size, int index){
-     if(2*index+1<size&&data[2*index+1]>data[index]){
+     //System.out.println("currently on"+data[index]);
+     if(2*index+1<size&&2*index+2<size){
+       if(data[2*index+1]>data[index]&&data[2*index+1]>=data[2*index+2]){
+         swap(data, index, 2*index+1);
+         pushDown(data,size,2*index+1);
+       }
+       else if(data[2*index+2]>data[index]&&data[2*index+2]>data[2*index+1]){
+         swap(data, index, 2*index+2);
+         pushDown(data,size,2*index+2);
+       }
+     }
+     else if(2*index+1<size&&data[2*index+1]>data[index]){
+      //System.out.println("swapped"+data[index]+"with"+data[2*index+1] );
+       //System.out.println(Arrays.toString(data));
        swap(data, index, 2*index+1);
        pushDown(data,size,2*index+1);
      }
      else if(2*index+2<size&&data[2*index+2]>data[index]){
        swap(data, index, 2*index+2);
+       //System.out.println("swapped"+data[index]+"with"+data[2*index+2] );
+       //System.out.println(Arrays.toString(data));
        pushDown(data,size,2*index+2);
      }
    }
@@ -24,21 +42,21 @@ import java.util.Arrays;
    private static void pushUp(int[] data, int index){
      if(data[(index-1)/2]<data[index]){
        swap(data,index,(index-1)/2);
-       System.out.println("swapped"+data[index]+"with"+data[(index-1)/2] );
-       System.out.println(Arrays.toString(data));
+       //System.out.println("swapped"+data[index]+"with"+data[(index-1)/2] );
+       //System.out.println(Arrays.toString(data));
        pushUp(data,(index-1)/2);
      }
    }
    public static void heapify(int[] data){
      for(int i=1;i<data.length;i++){
-       System.out.println(Arrays.toString(data));
+       //System.out.println(Arrays.toString(data));
        pushUp(data,i);
    }
  }
    public static void heapsort(int[] data){
      heapify(data);
      int size=data.length;
-     for(int i=0;i<size;i++){
+     while(size>0){
        //System.out.println(Arrays.toString(data));
        pushDown(data,size-1,0);
        swap(data,0,size-1);
@@ -46,6 +64,7 @@ import java.util.Arrays;
      }
    }
    public static void main(String[] args) {
+    // int[] x={};
      int[] x={1,1,33,42,83,51};
      heapsort(x);
      System.out.println(Arrays.toString(x));
