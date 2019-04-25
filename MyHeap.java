@@ -57,15 +57,22 @@ import java.util.Arrays;
      heapify(data);
      int size=data.length;
      while(size>0){
+       //System.out.println("---");
        //System.out.println(Arrays.toString(data));
-       pushDown(data,size-1,0);
+       //System.out.println(size);
+       pushDown(data,size,0);
+       //System.out.println(Arrays.toString(data));
+       //System.out.println("----");
        swap(data,0,size-1);
+
        size--;
      }
    }
    public static void main(String[] args) {
-    // int[] x={};
-     int[] x={1,1,33,42,83,51};
+    //int[] x={51, 55, 56, 64, 64, 64, 64, 64, 68, 132, 132, 132, 132, 132, 132, 155, 526, 533, 536};
+    //pushDown(x,2,0);
+    //swap(data,0,2);
+    int[] x={155,132,533,132,55,132,64,132,526,132,68,64,64,536,132,56,64,51,64};
      heapsort(x);
      System.out.println(Arrays.toString(x));
    }
